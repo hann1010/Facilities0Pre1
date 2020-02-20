@@ -39,6 +39,7 @@
 		{% if user.is_authenticated %}
 		
 		<input type="submit" value="Logout" onclick="window.location='{% url 'logout' %}';" />
+		<input type="submit" value="Apartment" onclick="window.location='{% url 'apartment' %}';" />
 		{% else %}
 		
 		<input type="submit" value="Login" onclick="window.location='{% url 'login' %}';" />
