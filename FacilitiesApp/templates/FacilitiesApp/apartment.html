@@ -32,7 +32,7 @@
 				<a class="mr-2" href="#">{{ Apartment.author }}</a>
 				<small class="text-muted">{{ Apartment.date_posted|date:"H:m F d, Y" }}</small>
 				<small class="article-content">-- </small>
-				<a class="mr-2" href="#">Detail</a>
+				<a class="mr-2" href="{% url 'apartment-detail' Apartment.id %}">Detail</a>
 				<small class="article-content">-- </small>
 				<a class="mr-2" href="#">New ticket</a>
 			

@@ -1,6 +1,13 @@
 from django.shortcuts import render
 import datetime
 from .models import Apartment
+from django.views.generic import (
+#    ListView,
+    DetailView,
+#    CreateView,
+#    UpdateView,
+#    DeleteView
+)
 
 def home(request):
     x = datetime.datetime.now()
@@ -15,6 +22,9 @@ def home(request):
 def apartment(request):
     textx = {
         'posts': Apartment.objects.all()#.values('title')
-       # 'posts': SavedData.objects.filter(author_id = request.user.id)
+       # 'posts': Apartment.objects.filter(author_id = request.user.id)
     }
     return render(request, "FacilitiesApp/apartment.html", textx)
+
+class ApartmentDetailView(DetailView):
+    model = Apartment
