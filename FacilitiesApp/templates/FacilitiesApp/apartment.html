@@ -19,8 +19,9 @@
 		<div class="jumbotron">
 			<h1>Apartments</h1>
 			
-			<input type="submit" value="Return to Index" onclick="window.location='../';" />  	
-    		<input type="submit" value="New" onclick="window.location='#';" /> 
+			
+		<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home'  %}">Return to Index</a>  	
+		<a class="btn btn-success btn-sm mt-1 mb-1" href="#">New</a>
 			
 		{% block content %}
     	{% for Apartment in posts %}
