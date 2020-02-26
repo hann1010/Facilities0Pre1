@@ -38,11 +38,11 @@
         
 		{% if user.is_authenticated %}
 		
-		<input type="submit" value="Logout" onclick="window.location='{% url 'logout' %}';" />
-		<input type="submit" value="Apartment" onclick="window.location='{% url 'apartment' %}';" />
-		{% else %}
 		
-		<input type="submit" value="Login" onclick="window.location='{% url 'login' %}';" />
+		<a class="btn btn-danger btn-sm mt-1 mb-1" href='{% url 'logout' %}'>Logout</a>
+		<a class="btn btn-success btn-sm mt-1 mb-1" href='{% url 'apartment' %}'>Apartment</a>
+		{% else %}
+		<a class="btn btn-success btn-sm mt-1 mb-1" href='{% url 'login' %}'>Login</a>
 		{% endif %}
         <br>
     	</div>
