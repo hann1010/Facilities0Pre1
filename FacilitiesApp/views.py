@@ -1,12 +1,13 @@
 from django.shortcuts import render
 import datetime
 from .models import Apartment
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
     DetailView,
 #    CreateView,
 #    UpdateView,
-#    DeleteView
+    DeleteView
 )
 
 def home(request):
@@ -28,3 +29,13 @@ def apartment(request):
 
 class ApartmentDetailView(DetailView):
     model = Apartment
+
+class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Apartment
+    success_url = '/apartment'
+
+    def test_func(self):
+        SavedData = self.get_object()
+        if self.request.user == SavedData.author:
+            return True
+        return False 
