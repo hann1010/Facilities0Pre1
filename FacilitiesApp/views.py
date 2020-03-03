@@ -6,7 +6,7 @@ from django.views.generic import (
 #    ListView,
     DetailView,
 #    CreateView,
-#    UpdateView,
+    UpdateView,
     DeleteView
 )
 
@@ -29,6 +29,22 @@ def apartment(request):
 
 class ApartmentDetailView(DetailView):
     model = Apartment
+
+class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Apartment
+    success_url = '/apartment'
+    fields = ['first_name', 'last_name', 'address']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        Apartment = self.get_object()
+        if self.request.user == Apartment.author:
+            return True
+        return False
+
 
 class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Apartment
