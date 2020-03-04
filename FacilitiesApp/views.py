@@ -33,7 +33,7 @@ class ApartmentDetailView(DetailView):
 class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Apartment
     success_url = '/apartment'
-    fields = ['first_name', 'last_name', 'address']
+    fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
