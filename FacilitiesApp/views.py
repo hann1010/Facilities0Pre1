@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
     DetailView,
-#    CreateView,
+    CreateView,
     UpdateView,
     DeleteView
 )
@@ -29,6 +29,17 @@ def apartment(request):
 
 class ApartmentDetailView(DetailView):
     model = Apartment
+
+
+class ApartmentCreateView(LoginRequiredMixin, CreateView):
+    model = Apartment
+    success_url = '/apartment'
+    fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Apartment

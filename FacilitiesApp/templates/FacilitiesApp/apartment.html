@@ -21,7 +21,7 @@
 			
 			
 		<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home'  %}">Return to Index</a>  	
-		<a class="btn btn-success btn-sm mt-1 mb-1" href="#">New</a>
+		<a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'apartment-create' %}">New</a>
 			
 		{% block content %}
     	{% for Apartment in posts %}
