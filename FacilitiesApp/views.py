@@ -62,7 +62,7 @@ class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = '/apartment'
 
     def test_func(self):
-        SavedData = self.get_object()
-        if self.request.user == SavedData.author:
+        Apartment = self.get_object()
+        if self.request.user == Apartment.author:
             return True
         return False 
