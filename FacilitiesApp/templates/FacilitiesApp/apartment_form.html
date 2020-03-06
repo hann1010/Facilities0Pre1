@@ -17,7 +17,7 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1>Form</h1>
+			<h2>Apartment Form</h2>
             {% block content %}
             <div class="content-section">
 			
@@ -25,9 +25,23 @@
                     {% csrf_token %}
                     <fieldset class="form-group">
 						<legend class="border-bottom mb-4"> </legend>
+                        <label>First name:*</label><br>
+                        {{ form.first_name }} <br><br>
+                        <label>Last name:*</label><br>
+                        {{ form.last_name }} <br><br>
+                        <label>Email:</label><br>
+                        {{ form.email }} <br><br>
+                        <label>Phone no:</label><br>
+                        {{ form.phone_no }} <br><br>
+                        <label>Address:*</label><br>
+                        {{ form.address }} <br><br>
+                        <label>House company:*</label><br>
+                        {{ form.house_company }} <br><br>
+                        <label>Notes:</label><br>
+                        {{ form.notes }} <br>
+                        
 						
 						
-						{{ form.as_p }}
 					
                     </fieldset>
         
