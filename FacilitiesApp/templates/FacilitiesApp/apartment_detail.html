@@ -28,7 +28,7 @@
               <div class="media-body">
                 <div class="article-metadata">
                   <a class="mr-2" href="#">{{ object.author }}</a>
-                  <small class="text-muted">{{ object.date_posted|date:"h:m F d, Y" }}</small>
+                  <small class="text-muted">{{ object.date_posted|date:"h:m d F, Y" }}</small>
                   {% if object.author == user %}
                     <div>
                      
@@ -41,7 +41,7 @@
 			<p class="article-content">E-mail: {{ object.email }}</p>
 			<p class="article-content">Phone no: {{ object.phone_no }}</p>
 			<p class="article-content">House company: {{ object.house_company }}</p>
-			<p class="article-content">Date: {{ object.date_posted }}</p>
+			<p class="article-content">Date: {{ object.date_posted|date:"h:m d F, Y" }}</p>
 			<p class="article-content">Notes: {{ object.notes }}</p>
               </div>
             </article>
