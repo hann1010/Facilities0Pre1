@@ -37,7 +37,8 @@
                         {{ form.address }} <br><br>
                         <label>House company:*</label><br>
                         {{ form.house_company }} <br><br>
-                        <p class="article-content">Date: {{ object.date_posted|date:"h:m d F, Y" }}</p><br>
+                        <label>Date:</label>
+                        <p class="mr-1"> {{ object.date_posted|date:"h:m d F, Y" }}</p><br>
                         <label>Notes:</label><br>
                         {{ form.notes }} <br>
                         
