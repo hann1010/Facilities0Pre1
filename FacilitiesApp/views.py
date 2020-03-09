@@ -13,7 +13,7 @@ from django.views.generic import (
 def home(request):
     x = datetime.datetime.now()
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
-    
+#    date_tmp = request.user.profile.members_of
  
 #    current_user = request.user
 #    disp_temp = date_tmp + " User: " + str(current_user)
@@ -38,6 +38,7 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.company_name = self.request.user.profile.members_of
         return super().form_valid(form)
 
 
