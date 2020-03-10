@@ -22,8 +22,8 @@ def home(request):
 
 def apartment(request):
     textx = {
-        'posts': Apartment.objects.all()#.values('title')
-       # 'posts': Apartment.objects.filter(author_id = request.user.id)
+       # 'posts': Apartment.objects.all()#.values('title')
+        'posts': Apartment.objects.filter(company_name = request.user.profile.members_of)
     }
     return render(request, "FacilitiesApp/apartment.html", textx)
 
@@ -53,7 +53,7 @@ class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         Apartment = self.get_object()
-        if self.request.user == Apartment.author:
+        if self.request.user.profile.members_of == Apartment.company_name:
             return True
         return False
 
