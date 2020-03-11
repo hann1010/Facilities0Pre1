@@ -4,7 +4,7 @@ from .models import Apartment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
-    DetailView,
+#    DetailView,
     CreateView,
     UpdateView,
     DeleteView
@@ -27,8 +27,8 @@ def apartment(request):
     }
     return render(request, "FacilitiesApp/apartment.html", textx)
 
-class ApartmentDetailView(DetailView):
-    model = Apartment
+#class ApartmentDetailView(DetailView):
+#    model = Apartment
 
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):

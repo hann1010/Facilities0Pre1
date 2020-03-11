@@ -33,9 +33,9 @@
 				<a class="mr-2" href="#">{{ Apartment.author }}</a>
 				<small class="text-muted">{{ Apartment.date_posted|date:"h:m d F, Y" }}</small>
 				<small class="article-content">-- </small>
-				<a class="mr-2" href="{% url 'apartment-detail' Apartment.id %}">Detail</a>
-				<small class="article-content">-- </small>
 				<a class="mr-2" href="{% url 'apartment-update' Apartment.id %}">Update</a>
+				<small class="article-content">-- </small>
+				<a class="mr-2" href="{% url 'apartment-delete' Apartment.id %}">Delete</a>
 				<small class="article-content">-- </small>
 				<a class="mr-2" href="#">New ticket</a>
 			
