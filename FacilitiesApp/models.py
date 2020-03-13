@@ -14,7 +14,9 @@ class Apartment(models.Model):
     company_name = models.CharField(max_length=100)
     notes = models.TextField(blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_last_save = models.DateTimeField(auto_now=timezone.now)
+    username_first = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.address + " " + self.last_name
