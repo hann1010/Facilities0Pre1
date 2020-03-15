@@ -37,11 +37,18 @@
                         {{ form.address }} <br><br>
                         <label>House company:*</label><br>
                         {{ form.house_company }} <br><br>
-                        <label>Date:</label><br>
-                        {{ object.date_posted|date:"H:i d F, Y" }}<br><br>
                         <label>Notes:</label><br>
                         {{ form.notes }} <br>
-                        
+                        <br>
+                        <label>Creating date :</label><br>
+                        {{ object.date_posted|date:"H:i d F, Y" }}<br><br>
+                        <label>Creating author:</label><br>
+                        {{ object.username_first }}<br><br>
+                        <label>Last save date:</label><br>
+                        {{ object.date_last_save|date:"H:i d F, Y" }}<br><br>
+                        <label>Last save author:</label><br>
+                        {{ object.author }}<br><br>
+
 						
 						
 					

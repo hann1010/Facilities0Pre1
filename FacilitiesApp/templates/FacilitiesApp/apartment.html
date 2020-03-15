@@ -31,7 +31,7 @@
 				<small class="article-content"><b>Address: {{ Apartment.address }}</b></small>
 				<small class="article-content"><b>Last name: {{ Apartment.last_name }}</b></small>
 				<small class="text-muted">{{ Apartment.author }}</small>
-				<small class="text-muted">{{ Apartment.date_posted|date:"H:i d F, Y" }}</small>
+				<small class="text-muted">{{ Apartment.date_last_save|date:"H:i d F, Y" }}</small>
 				<small class="article-content">-- </small>
 				<a class="mr-2" href="{% url 'apartment-update' Apartment.id %}">Update</a>
 				<small class="article-content">-- </small>

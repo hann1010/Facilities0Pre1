@@ -39,6 +39,7 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.company_name = self.request.user.profile.members_of
+        form.instance.username_first = self.request.user
         return super().form_valid(form)
 
 
