@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Apartments - Form Edit</title>
+	<title>Apartments - Form New</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -17,7 +17,7 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h2>Apartment Form Edit</h2>
+			<h2>Apartment Form New</h2>
             {% block content %}
             <div class="content-section">
 			
@@ -40,14 +40,7 @@
                         <label>Notes:</label><br>
                         {{ form.notes }} <br>
                         <br>
-                        <label>Creating date :</label><br>
-                        {{ object.date_posted|date:"H:i d F, Y" }}<br><br>
-                        <label>Creating author:</label><br>
-                        {{ object.username_first }}<br><br>
-                        <label>Last save date:</label><br>
-                        {{ object.date_last_save|date:"H:i d F, Y" }}<br><br>
-                        <label>Last save author:</label><br>
-                        {{ object.author }}<br><br>
+                        
 
 						
 						

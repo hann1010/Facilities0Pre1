@@ -34,6 +34,7 @@ def apartment(request):
 class ApartmentCreateView(LoginRequiredMixin, CreateView):
     model = Apartment
     success_url = '/apartment'
+    template_name = 'FacilitiesApp/apartment_form_new.html'
     fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
