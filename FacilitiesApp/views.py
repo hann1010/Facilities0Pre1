@@ -23,7 +23,7 @@ def home(request):
 def apartment(request):
     textx = {
        # 'posts': Apartment.objects.all()#.values('title')
-        'posts': Apartment.objects.filter(company_name = request.user.profile.members_of)
+        'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
     }
     return render(request, "FacilitiesApp/apartment.html", textx)
 
