@@ -31,7 +31,7 @@ class Ticket(models.Model):
     company_name = models.CharField(max_length=100)
     repair_state = models.CharField(max_length=100)
     repair = models.CharField(max_length=100, blank=True)
-    date_repair = models.DateTimeField()
+    date_repair = models.DateTimeField(default=timezone.now)
     notes = models.TextField(blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
     date_last_save = models.DateTimeField(auto_now=timezone.now)
