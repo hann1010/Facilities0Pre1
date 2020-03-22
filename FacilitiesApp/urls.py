@@ -5,7 +5,7 @@ from .views import (
     ApartmentCreateView,
     ApartmentUpdateView,
     ApartmentDeleteView,
-	TicketCreateView
+	TicketCreateView,
 )
 from . import views
 
