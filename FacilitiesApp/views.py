@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import datetime
-from .models import Apartment
+from .models import Apartment, Ticket
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
@@ -69,3 +69,15 @@ class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == Apartment.author:
             return True
         return False 
+
+class TicketCreateView(LoginRequiredMixin, CreateView):
+    model = Ticket
+    success_url = '/'
+    template_name = 'FacilitiesApp/ticket_form_new.html'
+    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.company_name = self.request.user.profile.members_of
+        form.instance.username_first = self.request.user
+        return super().form_valid(form)
