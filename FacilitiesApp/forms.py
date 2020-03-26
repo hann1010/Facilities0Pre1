@@ -3,11 +3,11 @@ from django.forms import ModelForm
 
 from .models import Ticket
 
-
 class DateInput(forms.DateInput):
     input_type = 'date'
     
-    
+class State_repare(forms.NullBooleanSelect):
+    input_type = 'text'
 
 
 class TicketForm(ModelForm):
@@ -16,8 +16,10 @@ class TicketForm(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'date_repair': DateInput(),            
+            'date_repair': DateInput(),
+            'repair_state': State_repare(),            
         }
+
     
 
         
