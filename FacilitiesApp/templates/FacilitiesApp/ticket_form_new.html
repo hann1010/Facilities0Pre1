@@ -37,10 +37,16 @@
                         {{ form.phone_no }} <br><br>
                         <label>Address:*</label><br>
                         {{ form.address }} <br><br>
-                        <label>Repair state**:</label><br>
+                        <label>Received:</label><br>
+                        {{form.received }}
+                        <br><br>
+                        <label>Fault:</label><br>
+                        {{ form.fault }}
+                        <br><br>
+                        <label>Repair done:</label><br>
                         {{form.repair_state }}
                         <br><br>
-                        <label>Repair:</label><br>
+                        <label>Repair*:</label><br>
                         {{ form.repair }}
                         <br><br>
                         <label>Date repair:*(2020-03-22 22:18:49)</label><br>
