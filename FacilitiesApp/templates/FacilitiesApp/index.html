@@ -45,7 +45,11 @@
 		{% else %}
 		<a class="btn btn-success btn-sm mt-1 mb-1" href='{% url 'login' %}'>Login</a>
 		{% endif %}
-        <br>
+		<br>
+		{% if user.is_authenticated %}
+		<br><br>
+		<label>Test...</label><br>
+		{% endif %}
     	</div>
 	</div>
 </body>
