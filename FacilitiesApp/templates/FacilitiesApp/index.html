@@ -48,8 +48,20 @@
 		<br>
 		{% if user.is_authenticated %}
 		<br><br>
-		<label>Test...</label><br>
+		<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th>Date</th>
+				<th>Last name</th>
+				<th>Address</th>
+				<th>Author</th>
+				<th>Last save</th>
+				<th>Title</th>
+				<th>Update</th>
+			  </tr>
+			</thead>
 		{% endif %}
+	</table>
     	</div>
 	</div>
 </body>
