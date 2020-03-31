@@ -14,7 +14,7 @@ class TicketForm(ModelForm):
 
     class Meta:
         model = Ticket
-        fields = ['first_name', 'last_name', 'address', 'received', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
+        fields = ['first_name', 'last_name', 'address', 'received', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
             'date_repair': DateInput(),
             'repair_state': State_select(),

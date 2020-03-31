@@ -30,6 +30,7 @@ class Ticket(models.Model):
     house_company = models.CharField(max_length=100)
     company_name = models.CharField(max_length=100)
     received = models.BooleanField(default='false')
+    title = models.CharField(max_length=100, blank=False)
     fault = models.TextField(blank=False)
     repair_state = models.BooleanField(default='false')
     repair = models.TextField(blank=True)
