@@ -14,7 +14,8 @@ from django.views.generic import (
 def home(request):
     x = datetime.datetime.now()
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
-    
+
+    members_of_tmp = ''
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
 
