@@ -14,11 +14,16 @@ from django.views.generic import (
 def home(request):
     x = datetime.datetime.now()
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
+    
+    if request.user.is_authenticated:
+        members_of_tmp = request.user.profile.members_of
+
+
 #    date_tmp = request.user.profile.members_of
  
 #    current_user = request.user
 #    disp_temp = date_tmp + " User: " + str(current_user)
-    return render(request, "FacilitiesApp/index.html", {"date_str": date_tmp})
+    return render(request, "FacilitiesApp/index.html", {"date_str": date_tmp, "members_of": members_of_tmp})
 
 
 def apartment(request):
