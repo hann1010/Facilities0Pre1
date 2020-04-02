@@ -29,7 +29,7 @@ def home(request):
  
 #    current_user = request.user
 #    disp_temp = date_tmp + " User: " + str(current_user)
-    return render(request, "FacilitiesApp/index.html", {"date_str": date_tmp, "members_of": members_of_tmp})
+    return render(request, "FacilitiesApp/index.html", textx, {"date_str": date_tmp, "members_of": members_of_tmp})
 
 
 def apartment(request):
