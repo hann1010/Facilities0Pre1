@@ -16,8 +16,13 @@ def home(request):
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
 
     members_of_tmp = ''
+    textx = ''
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
+        textx = {
+        'posts': Ticket.objects.all()#.values('title')
+       # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
+        }
 
 
 #    date_tmp = request.user.profile.members_of
