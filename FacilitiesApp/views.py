@@ -16,7 +16,7 @@ def home(request):
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
 
     members_of_tmp = ''
-    textx = ''
+    textx = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
         textx = {
