@@ -17,10 +17,13 @@ def home(request):
 
     members_of_tmp = ''
     textx = {}
+
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
         textx = {
-        'posts': Ticket.objects.all()#.values('title')
+        'posts': Ticket.objects.all(),#.values('title')
+        'date_str': date_tmp,
+        'members_of': members_of_tmp
        # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
         }
 
@@ -29,7 +32,7 @@ def home(request):
  
 #    current_user = request.user
 #    disp_temp = date_tmp + " User: " + str(current_user)
-    return render(request, "FacilitiesApp/index.html", textx, {"date_str": date_tmp, "members_of": members_of_tmp})
+    return render(request, "FacilitiesApp/index.html", textx)
 
 
 def apartment(request):

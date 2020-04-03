@@ -41,7 +41,7 @@
 		<table class="table table-striped">
 			<thead>
 			  <tr>
-				<th>Date</th>
+				<th>Date posted</th>
 				<th>Last name</th>
 				<th>Address</th>
 				<th>Author</th>
@@ -50,6 +50,25 @@
 				<th>Update</th>
 			  </tr>
 			</thead>
+			{% block content %}
+			{% for Ticket in posts %}
+			
+					<tbody>
+						<tr>
+							<td>{{ Ticket.date_posted|date:"H:i d F, Y" }}</td>
+							<td>{{ Ticket.last_name }}</td>
+							<td>{{ Ticket.address }}</td>
+							<td>{{ Ticket.author }}</td>
+							<td>{{ Ticket.date_last_save|date:"H:i d F, Y" }}</td>
+							<td>{{ Ticket.title }}</td>
+							<td><a href="#">Update</a></td>
+						</tr>
+					</tbody>	
+					  
+			
+			{% endfor %}
+			{% endblock content %}
+	
 		{% endif %}
 	</table>
     	</div>
