@@ -17,11 +17,10 @@ def home(request):
 
     members_of_tmp = ''
     textx = {}
-
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
         textx = {
-        'posts': Ticket.objects.all(),#.values('title')
+        'posts': Ticket.objects.filter(company_name = request.user.profile.members_of).order_by('-date_posted'),
         'date_str': date_tmp,
         'members_of': members_of_tmp
        # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
