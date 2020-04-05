@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Ticket - Form Edit</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+</head>
+
+
+<body>
+	<div class="container">
+
+		<div class="jumbotron">
+			<h2>Ticket Form Edit</h2>
+            {% block content %}
+            <div class="content-section">
+			
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4"> </legend>
+                        <label>First name:*</label><br>
+                        {{ form.first_name }} <br><br>
+                        <label>Last name:*</label><br>
+                        {{ form.last_name }} <br><br>
+                        <label>Email:</label><br>
+                        {{ form.email }} <br><br>
+                        <label>Phone no:</label><br>
+                        {{ form.phone_no }} <br><br>
+                        <label>Address:*</label><br>
+                        {{ form.address }} <br><br>
+                        <label>House company:*</label><br>
+                        {{ form.house_company }} <br><br>
+                        <label>Received:</label><br>
+                        {{form.received }}
+                        <br><br>
+                        <label>Title:*</label><br>
+                        {{ form.title }}
+                        <br><br>
+                        <label>Fault:*</label><br>
+                        {{ form.fault }}
+                        <br><br>
+                        <label>Repair done:</label><br>
+                        {{form.repair_state }}
+                        <br><br>
+                        <label>Repair:</label><br>
+                        {{ form.repair }}
+                        <br><br>
+                        <label>Date repair:</label><br>
+                        {{ form.date_repair }}
+                        <br><br>
+                        <label>Notes:</label><br>
+                        {{ form.notes }} <br>
+                        <br>
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-info"><b> Creating date :</b></li>
+                            <li class="list-group-item">{{ object.date_posted|date:"H:i d F, Y" }}</li>
+                            <li class="list-group-item list-group-item-info"><b>Creating author:</b></li>
+                            <li class="list-group-item">{{ object.username_first}}</li>
+                            <li class="list-group-item list-group-item-info"><b>Last save date:</b></li>
+                            <li class="list-group-item">{{ object.date_last_save|date:"H:i d F, Y" }}</li>
+                            <li class="list-group-item list-group-item-info"><b>Last save author:</b></li>
+                            <li class="list-group-item">{{ object.author}}</li>
+                        </ul>
+                    </fieldset>
+        
+            
+            <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Submit</button>
+            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home' %}">Cancel</a>
+            </div>
+            {% endblock content %}
+    </div>
+</form>
+</body>
+</html>

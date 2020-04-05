@@ -6,6 +6,7 @@ from .views import (
     ApartmentUpdateView,
     ApartmentDeleteView,
 	TicketCreateView,
+	TicketUpdateView,
 )
 from . import views
 
@@ -17,4 +18,5 @@ urlpatterns = [
 	path('apartment/<int:pk>/update/', ApartmentUpdateView.as_view(), name='apartment-update'),
 	path('apartment/<int:pk>/delete/', ApartmentDeleteView.as_view(), name='apartment-delete'),
 	path('ticket/new/', TicketCreateView.as_view(), name='ticket-create'),
+	path('ticket/<int:pk>/update/', TicketUpdateView.as_view(), name='ticket-update'),
 ]

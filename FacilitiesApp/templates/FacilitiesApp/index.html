@@ -61,7 +61,7 @@
 							<td>{{ Ticket.author }}</td>
 							<td>{{ Ticket.date_last_save|date:"H:i d F, Y" }}</td>
 							<td>{{ Ticket.title }}</td>
-							<td><a href="#">Update</a></td>
+							<td><a href="{% url 'ticket-update' Ticket.id %}">Update</a></td>
 						</tr>
 					</tbody>	
 					  

@@ -96,3 +96,20 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
         form.instance.company_name = self.request.user.profile.members_of
         form.instance.username_first = self.request.user
         return super().form_valid(form)
+
+
+class TicketUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Ticket
+    form_class = TicketForm
+    success_url = '/'
+#    fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        Ticket = self.get_object()
+        if self.request.user.profile.members_of == Ticket.company_name:
+            return True
+        return False
