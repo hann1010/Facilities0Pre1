@@ -113,3 +113,17 @@ class TicketUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user.profile.members_of == Ticket.company_name:
             return True
         return False
+
+
+class TicketAsCreateView(LoginRequiredMixin, CreateView):
+    model = Ticket
+    form_class = TicketForm
+    success_url = '/'
+    template_name = 'FacilitiesApp/ticket_form_new.html'
+#    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.company_name = self.request.user.profile.members_of
+        form.instance.username_first = self.request.user
+        return super().form_valid(form)
