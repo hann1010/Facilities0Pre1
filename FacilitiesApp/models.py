@@ -21,6 +21,9 @@ class Apartment(models.Model):
     def __str__(self):
         return self.address + " " + self.last_name
 
+    def get_absolute_url(self):
+        return reverse('apartment-as-ticket-create', kwargs={'pk': self.pk})
+
 class Ticket(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

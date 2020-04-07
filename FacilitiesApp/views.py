@@ -115,9 +115,16 @@ class TicketUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class TicketAsCreateView(LoginRequiredMixin, CreateView):
+class TicketAsCreateView(LoginRequiredMixin, CreateView,):
+    abc = Apartment.objects.all().values().get(pk=14)
+
+    abcd = abc['house_company']
+    initalx ={
+        'house_company': abcd,
+    }
     model = Ticket
     form_class = TicketForm
+    initial = initalx
     success_url = '/'
     template_name = 'FacilitiesApp/ticket_form_new.html'
 #    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
