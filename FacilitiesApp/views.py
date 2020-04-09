@@ -5,7 +5,7 @@ from .forms import TicketForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
-#    DetailView,
+    DetailView,
     CreateView,
     UpdateView,
     DeleteView
@@ -115,7 +115,11 @@ class TicketUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class TicketAsCreateView(LoginRequiredMixin, CreateView,):
+class ApartmentDetailView(DetailView):
+    model = Apartment
+
+
+class TicketPreCreateView(LoginRequiredMixin, CreateView,):
     abc = Apartment.objects.all().values().get(pk=14)
 
     abcd = abc['house_company']

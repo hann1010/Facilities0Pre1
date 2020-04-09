@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Detail page</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+</head>
+<body>
+	<div class="container">
+
+		<div class="jumbotron">
+			<h1>Detail page</h1>
+			<p></p>
+			<a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'apartment' %}">Back to apartments</a>
+            <a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'pre-ticket-create' %}">Load details to New Ticket</a>
+            {% block content %}
+            <article class="media content-section">
+              
+              <div class="media-body">
+                <div class="article-metadata">
+                  <a class="mr-2" href="#">{{ object.author }}</a>
+                  <small class="text-muted">{{ object.date_posted|date:"h:m F d, Y" }}</small>
+                  {% if object.author == user %}
+                    <div>
+                     
+                    </div>
+                  {% endif %}
+                </div>
+            <h2><a class="article-title">{{ object.title }}</a></h2>
+			
+			
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info"><b> First name:</b></li>
+                <li class="list-group-item">{{ object.first_name }}</li>
+                <li class="list-group-item list-group-item-info"><b> Last name:</b></li>
+                <li class="list-group-item">{{ object.last_name }}</li>
+                <li class="list-group-item list-group-item-info"><b> Address:</b></li>
+                <li class="list-group-item">{{ object.address }}</li>
+                <li class="list-group-item list-group-item-info"><b> Creating date :</b></li>
+                <li class="list-group-item">{{ object.date_posted|date:"H:i d F, Y" }}</li>
+                <li class="list-group-item list-group-item-info"><b>Creating author:</b></li>
+                <li class="list-group-item">{{ object.username_first}}</li>
+                <li class="list-group-item list-group-item-info"><b>Last save date:</b></li>
+                <li class="list-group-item">{{ object.date_last_save|date:"H:i d F, Y" }}</li>
+                <li class="list-group-item list-group-item-info"><b>Last save author:</b></li>
+                <li class="list-group-item">{{ object.author}}</li>
+            </ul>
+              </div>
+            </article>
+          {% endblock content %}  
+		
+		</div>
+	</div>
+</body>
+</html
