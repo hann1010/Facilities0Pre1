@@ -121,14 +121,24 @@ class ApartmentDetailView(DetailView):
 
 class TicketPreCreateView(LoginRequiredMixin, CreateView,):
     abc = Apartment.objects.all().values().get(pk=14)
-
     abcd = abc['house_company']
     initalx ={
         'house_company': abcd,
     }
+
+    def get_initial(self):
+        super(TicketPreCreateView, self).get_initial()
+    #    alert = Alert.objects.get(pk=self.request.POST.get("alert_id"))
+        
+        
+        user = self.request.user
+    #    self.initial = {"alert":alert.id, "user":user.id, "message":"test"}
+        self.initial = {"first_name": user , "last_name":"test"}
+        return self.initial
+
     model = Ticket
     form_class = TicketForm
-    initial = initalx
+#    initial = initalx
     success_url = '/'
     template_name = 'FacilitiesApp/ticket_form_new.html'
 #    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
