@@ -119,7 +119,7 @@ class ApartmentDetailView(DetailView):
     model = Apartment
 
 
-class TicketPreCreateView(LoginRequiredMixin, CreateView,):
+class TicketPreCreateView(LoginRequiredMixin, CreateView):
 
 
     def get_initial(self):
