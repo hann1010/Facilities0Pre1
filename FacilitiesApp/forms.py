@@ -17,7 +17,7 @@ class TicketForm(ModelForm):
         fields = ['first_name', 'last_name', 'address', 'received', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
             'date_repair': forms.SelectDateWidget(years=YEAR_CHOICES),
-            'repair_state': State_select(),
+        #    'repair_state': State_select(),
             'received': State_select(),           
         }
 
