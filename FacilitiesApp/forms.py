@@ -7,11 +7,11 @@ from .models import Ticket
 YEAR_CHOICES = ['2019', '2020', '2021', '2022', '2023', '2024']
 
 REPAIR_CHOICES = (
-                (0, "New"),
-                (1, "Received"),
-                (2, "Waiting someting"),
-                (3, "Repair done")
-                )
+    (0, "New"),
+    (1, "Received"),
+    (2, "Waiting someting"),
+    (3, "Repair done")
+    )
 
 class State_select(forms.NullBooleanSelect):
     input_type = 'text'
