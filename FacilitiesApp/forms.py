@@ -14,8 +14,6 @@ REPAIR_CHOICES = (
     (4, 'Repair done')
     )
 
-class State_select(forms.NullBooleanSelect):
-    input_type = 'text'
 
 
 class TicketForm(ModelForm):
@@ -24,9 +22,9 @@ class TicketForm(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'date_repair': forms.SelectDateWidget(years=YEAR_CHOICES),
+            'date_repair': forms.SelectDateWidget(years = YEAR_CHOICES),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),
-            'received': State_select(),           
+                      
         }
 
     
