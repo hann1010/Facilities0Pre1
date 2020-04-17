@@ -7,10 +7,11 @@ from .models import Ticket
 YEAR_CHOICES = ['2019', '2020', '2021', '2022', '2023', '2024']
 
 REPAIR_CHOICES = (
-    (0, "New"),
-    (1, "Received"),
-    (2, "Waiting someting"),
-    (3, "Repair done")
+    (0, 'New'),
+    (1, 'Received'),
+    (2, 'Waiting sparts'),
+    (3, 'Waiting contactor'),
+    (4, 'Repair done')
     )
 
 class State_select(forms.NullBooleanSelect):
@@ -21,7 +22,7 @@ class TicketForm(ModelForm):
 
     class Meta:
         model = Ticket
-        fields = ['first_name', 'last_name', 'address', 'received', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
+        fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
             'date_repair': forms.SelectDateWidget(years=YEAR_CHOICES),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),
