@@ -19,5 +19,5 @@ urlpatterns = [
 	path('apartment/<int:pk>/delete/', ApartmentDeleteView.as_view(), name='apartment-delete'),
 	path('ticket/new/', TicketCreateView.as_view(), name='ticket-create'),
 	path('ticket/<int:pk>/update/', TicketUpdateView.as_view(), name='ticket-update'),
-	path('ticket/<int:pk>/pre-new/', TicketPreCreateView.as_view(), name='pre-ticket-create'),
+	path('apartment/<int:pk>/to-ticket/pre-new/', TicketPreCreateView.as_view(), name='pre-ticket-create'),
 ]
