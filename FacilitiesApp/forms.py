@@ -14,6 +14,8 @@ REPAIR_CHOICES = (
     (4, 'Repair done')
     )
 
+class FindForm(forms.Form):
+    FindData = forms.Select(choices = REPAIR_CHOICES)
 
 
 class TicketForm(ModelForm):
