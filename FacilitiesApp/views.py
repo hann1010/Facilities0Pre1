@@ -2,6 +2,7 @@ from django.shortcuts import render
 import datetime
 from .models import Apartment, Ticket
 from .forms import TicketForm
+from .forms import FilterForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
