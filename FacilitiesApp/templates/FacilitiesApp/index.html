@@ -38,6 +38,9 @@
 		<br>
 		{% if user.is_authenticated %}
 		<br><br>
+		{{ filter }}
+		<input type="submit" value="Submit Filter" onclick="window.location='#';" /> 
+		<br>	
 		<table class="table table-striped">
 			<thead>
 			  <tr>
