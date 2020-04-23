@@ -13,6 +13,7 @@ from . import views
 
 urlpatterns = [
 	path('', views.home, name='home'),
+	path('filter/', views.home, name='home-filter'),
 	path('apartment/', views.apartment, name='apartment'),
 	path('apartment/new/', ApartmentCreateView.as_view(), name='apartment-create'),
 	path('apartment/<int:pk>/update/', ApartmentUpdateView.as_view(), name='apartment-update'),

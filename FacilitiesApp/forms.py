@@ -16,14 +16,10 @@ REPAIR_CHOICES = (
 
 
 class FilterForm(forms.Form):
-    Filter_repair_state = forms.MultipleChoiceField(
-        required=False,
-        widget=forms.Select,
-        choices=REPAIR_CHOICES,
-    )
+    Filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
+
 
 class TicketForm(ModelForm):
-
     class Meta:
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']

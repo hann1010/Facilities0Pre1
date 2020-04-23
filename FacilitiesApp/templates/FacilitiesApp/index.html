@@ -24,6 +24,7 @@
 			<p>DateTime: {{ date_str }}</p>
 			<p>User: {{ user }}</p>
 			<p>Member: {{ members_of }}</p>
+			<p>**Test**: {{ test }}</p>
             
         
 		{% if user.is_authenticated %}
@@ -38,8 +39,10 @@
 		<br>
 		{% if user.is_authenticated %}
 		<br><br>
+		<form action="/filter/" method="POST">
+		{% csrf_token %}
 		{{ filter }}
-		<input type="submit" value="Submit Filter" onclick="window.location='#';" /> 
+		<input type = "submit" value = "submit" />
 		<br>	
 		<table class="table table-striped">
 			<thead>
