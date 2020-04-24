@@ -16,18 +16,18 @@ def home(request):
     x = datetime.datetime.now()
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
 
-    members_of_tmp = ''
+    
     textx = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
-        test = request.POST.get('Filter_repair_state')
+        reparir_state = request.POST.get('Filter_repair_state')
         filter_tmp = FilterForm(request.POST or None)
         textx = {
         'posts': Ticket.objects.filter(company_name = request.user.profile.members_of).order_by('-date_posted'),
         'date_str': date_tmp,
         'members_of': members_of_tmp,
         'filter': filter_tmp,
-        'test': test
+        'test': reparir_state
        # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
         }
 
