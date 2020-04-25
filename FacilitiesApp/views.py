@@ -20,14 +20,17 @@ def home(request):
     textx = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
-        reparir_state = request.POST.get('Filter_repair_state')
+        repair_state_filter = request.POST.get('Filter_repair_state')
         filter_tmp = FilterForm(request.POST or None)
+        if str(repair_state_filter) == str(None):
+            repair_state_filter = 'New'
         textx = {
-        'posts': Ticket.objects.filter(company_name = request.user.profile.members_of).order_by('-date_posted'),
+        'posts': Ticket.objects.filter(company_name = request.user.profile.members_of)
+            .filter(repair_state = repair_state_filter).order_by('-date_posted'),
         'date_str': date_tmp,
         'members_of': members_of_tmp,
         'filter': filter_tmp,
-        'test': reparir_state
+        'test': repair_state_filter
        # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
         }
 
