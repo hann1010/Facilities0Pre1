@@ -17,14 +17,14 @@ def home(request):
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
 
     
-    list_x = {}
+    dic_x = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
         repair_state_filter = request.POST.get('Filter_repair_state')
         filter_tmp = FilterForm(request.POST or None)
         if str(repair_state_filter) == str(None):
             repair_state_filter = 'New'
-        list_x = {
+        dic_x = {
         'posts': Ticket.objects.filter(company_name = request.user.profile.members_of)
             .filter(repair_state = repair_state_filter).order_by('-date_posted'),
         'date_str': date_tmp,
@@ -39,15 +39,15 @@ def home(request):
  
 #    current_user = request.user
 #    disp_temp = date_tmp + " User: " + str(current_user)
-    return render(request, "FacilitiesApp/index.html", list_x)
+    return render(request, "FacilitiesApp/index.html", dic_x)
 
 
 def apartment(request):
-    list_x = {
+    dic_x = {
        # 'posts': Apartment.objects.all()#.values('title')
         'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
     }
-    return render(request, "FacilitiesApp/apartment.html", list_x)
+    return render(request, "FacilitiesApp/apartment.html", dic_x)
 
 #class ApartmentDetailView(DetailView):
 #    model = Apartment
@@ -129,7 +129,7 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         super(TicketPreCreateView, self).get_initial()
-        db_dic = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
+        db_list = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
         first_name = ''
         last_name = ''
         address = ''
@@ -137,13 +137,13 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
         email = ''
         house_company = ''
   
-        if db_dic['company_name'] == self.request.user.profile.members_of:
-            first_name = db_dic['first_name']
-            last_name = db_dic['last_name']
-            address = db_dic['address']
-            phone_no = db_dic['phone_no']
-            email = db_dic['email']
-            house_company = db_dic['house_company']
+        if db_list['company_name'] == self.request.user.profile.members_of:
+            first_name = db_list['first_name']
+            last_name = db_list['last_name']
+            address = db_list['address']
+            phone_no = db_list['phone_no']
+            email = db_list['email']
+            house_company = db_list['house_company']
  
         
         user = self.request.user
