@@ -17,14 +17,14 @@ def home(request):
     date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
 
     
-    textx = {}
+    list_x = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
         repair_state_filter = request.POST.get('Filter_repair_state')
         filter_tmp = FilterForm(request.POST or None)
         if str(repair_state_filter) == str(None):
             repair_state_filter = 'New'
-        textx = {
+        list_x = {
         'posts': Ticket.objects.filter(company_name = request.user.profile.members_of)
             .filter(repair_state = repair_state_filter).order_by('-date_posted'),
         'date_str': date_tmp,
@@ -39,15 +39,15 @@ def home(request):
  
 #    current_user = request.user
 #    disp_temp = date_tmp + " User: " + str(current_user)
-    return render(request, "FacilitiesApp/index.html", textx)
+    return render(request, "FacilitiesApp/index.html", list_x)
 
 
 def apartment(request):
-    textx = {
+    list_x = {
        # 'posts': Apartment.objects.all()#.values('title')
         'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
     }
-    return render(request, "FacilitiesApp/apartment.html", textx)
+    return render(request, "FacilitiesApp/apartment.html", list_x)
 
 #class ApartmentDetailView(DetailView):
 #    model = Apartment
