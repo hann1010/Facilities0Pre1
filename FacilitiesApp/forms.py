@@ -3,8 +3,8 @@ from django.forms import ModelForm
 import datetime
 from .models import Ticket
 
-x = datetime.datetime.now()
-date_year = int(x.strftime('%Y'))
+
+date_year = int(datetime.datetime.now().strftime('%Y'))
 
 
 YEAR_CHOICES = ['2019', '2020', '2021', '2022', '2023', '2024']

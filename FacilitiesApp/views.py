@@ -13,8 +13,8 @@ from django.views.generic import (
 )
 
 def home(request):
-    x = datetime.datetime.now()
-    date_tmp = (x.strftime('%d.%m.%Y, %H:%M:%S'))
+
+    date_tmp = (datetime.datetime.now().strftime('%d.%m.%Y, %H:%M:%S'))
 
     
     dic_x = {}
