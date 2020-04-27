@@ -14,9 +14,18 @@ REPAIR_CHOICES = (
     ('Repair done', 'Repair done')
     )
 
+REPAIR_Y_CHOICES = (
+    ('None', 'This year'),
+    ('2020', '2020'),
+    ('2021', '2021'),
+    ('2022', '2022'),
+    ('2023', '2023'),
+    ('2024', '2024')
+    )
 
 class FilterForm(forms.Form):
-    Filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
+    filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
+    repair_year = forms.ChoiceField(choices = REPAIR_Y_CHOICES)
 
 
 class TicketForm(ModelForm):

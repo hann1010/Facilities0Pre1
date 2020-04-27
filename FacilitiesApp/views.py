@@ -20,7 +20,7 @@ def home(request):
     dic_x = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
-        repair_state_filter = request.POST.get('Filter_repair_state')
+        repair_state_filter = request.POST.get('filter_repair_state')
         filter_tmp = FilterForm(request.POST or None)
         if str(repair_state_filter) == str(None):
             repair_state_filter = 'New'
