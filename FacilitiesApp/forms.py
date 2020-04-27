@@ -1,7 +1,10 @@
 from django import forms
 from django.forms import ModelForm
-
+import datetime
 from .models import Ticket
+
+x = datetime.datetime.now()
+date_year = int(x.strftime('%Y'))
 
 
 YEAR_CHOICES = ['2019', '2020', '2021', '2022', '2023', '2024']
@@ -16,7 +19,7 @@ REPAIR_CHOICES = (
 
 REPAIR_Y_CHOICES = (
     ('None', 'This year'),
-    ('2020', '2020'),
+    (date_year-1, date_year-1),
     ('2021', '2021'),
     ('2022', '2022'),
     ('2023', '2023'),
