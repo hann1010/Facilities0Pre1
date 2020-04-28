@@ -14,19 +14,25 @@ from django.views.generic import (
 
 def home(request):
 
-    date_tmp = (datetime.datetime.now().strftime('%d.%m.%Y, %H:%M:%S'))
+    date_tmp = datetime.datetime.now().strftime('%d.%m.%Y, %H:%M:%S')
 
     
     dic_x = {}
     if request.user.is_authenticated:
         members_of_tmp = request.user.profile.members_of
         repair_state_filter = request.POST.get('filter_repair_state')
+        repair_year_filter = request.POST.get('repair_year')
         filter_tmp = FilterForm(request.POST or None)
         if str(repair_state_filter) == str(None):
             repair_state_filter = 'New'
+        if str(repair_year_filter) == str(None):
+            repair_year_filter = datetime.datetime.now().strftime('%Y')
+        
         dic_x = {
-        'posts': Ticket.objects.filter(company_name = request.user.profile.members_of)
-            .filter(repair_state = repair_state_filter).order_by('-date_posted'),
+        'posts': Ticket.objects.filter(company_name = members_of_tmp)
+            .filter(repair_state = repair_state_filter)
+            .filter(date_repair__year = repair_year_filter)
+            .order_by('-date_posted'),
         'date_str': date_tmp,
         'members_of': members_of_tmp,
         'filter': filter_tmp,

@@ -7,7 +7,7 @@ from .models import Ticket
 date_year = int(datetime.datetime.now().strftime('%Y'))
 
 
-YEAR_CHOICES = ['2019', '2020', '2021', '2022', '2023', '2024']
+YEAR_CHOICES = [date_year-1, date_year, date_year+1]
 
 REPAIR_CHOICES = (
     ('New', 'New'),
@@ -18,12 +18,12 @@ REPAIR_CHOICES = (
     )
 
 REPAIR_Y_CHOICES = (
-    ('None', 'This year'),
+    ('None', date_year),
     (date_year-1, date_year-1),
-    ('2021', '2021'),
-    ('2022', '2022'),
-    ('2023', '2023'),
-    ('2024', '2024')
+    (date_year-2, date_year-2),
+    (date_year-3, date_year-3),
+    (date_year-4, date_year-4),
+    (date_year-5, date_year-5)
     )
 
 class FilterForm(forms.Form):
