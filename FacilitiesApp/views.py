@@ -3,6 +3,7 @@ import datetime
 from .models import Apartment, Ticket
 from .forms import TicketForm
 from .forms import FilterForm
+from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
@@ -49,9 +50,13 @@ def home(request):
 
 
 def apartment(request):
+    db_data = Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
+    paginator = Paginator(db_data, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     dic_x = {
        # 'posts': Apartment.objects.all()#.values('title')
-        'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
+        'posts': page_obj
     }
     return render(request, "FacilitiesApp/apartment.html", dic_x)
 
