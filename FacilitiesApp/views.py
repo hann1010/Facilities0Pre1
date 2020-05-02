@@ -20,6 +20,7 @@ def home(request):
     
     dic_x = {}
     if request.user.is_authenticated:
+        db_data = ''
         members_of_tmp = request.user.profile.members_of
         repair_state_filter = request.POST.get('filter_repair_state')
         repair_year_filter = request.POST.get('repair_year')
@@ -27,13 +28,21 @@ def home(request):
         if str(repair_state_filter) == str(None):
             repair_state_filter = 'New'
         if str(repair_year_filter) == str(None):
-            repair_year_filter = datetime.datetime.now().strftime('%Y')
+            #repair_year_filter = datetime.datetime.now().strftime('%Y')
+            db_data = Ticket.objects.filter(company_name = members_of_tmp)\
+                .filter(repair_state = repair_state_filter).order_by('-date_posted')
+        else:
+            db_data = Ticket.objects.filter(company_name = members_of_tmp)\
+                .filter(repair_state = repair_state_filter)\
+                .filter(date_repair__year = repair_year_filter).order_by('-date_posted')
+
         
         dic_x = {
-        'posts': Ticket.objects.filter(company_name = members_of_tmp)
-            .filter(repair_state = repair_state_filter)
-            .filter(date_repair__year = repair_year_filter)
-            .order_by('-date_posted'),
+        #'posts': Ticket.objects.filter(company_name = members_of_tmp)
+        #    .filter(repair_state = repair_state_filter)
+        #    .filter(date_repair__year = repair_year_filter)
+        #    .order_by('-date_posted'),
+        'posts': db_data,
         'date_str': date_tmp,
         'members_of': members_of_tmp,
         'filter': filter_tmp,

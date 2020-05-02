@@ -18,7 +18,8 @@ REPAIR_CHOICES = (
     )
 
 REPAIR_Y_CHOICES = (
-    ('None', date_year),
+    ('None', 'All'),
+    (date_year, date_year),
     (date_year-1, date_year-1),
     (date_year-2, date_year-2),
     (date_year-3, date_year-3),
