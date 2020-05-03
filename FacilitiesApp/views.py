@@ -35,14 +35,16 @@ def home(request):
             db_data = Ticket.objects.filter(company_name = members_of_tmp)\
                 .filter(repair_state = repair_state_filter)\
                 .filter(date_repair__year = repair_year_filter).order_by('-date_posted')
-
+        paginator = Paginator(db_data, 3)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
         
         dic_x = {
         #'posts': Ticket.objects.filter(company_name = members_of_tmp)
         #    .filter(repair_state = repair_state_filter)
         #    .filter(date_repair__year = repair_year_filter)
         #    .order_by('-date_posted'),
-        'posts': db_data,
+        'posts': page_obj,
         'date_str': date_tmp,
         'members_of': members_of_tmp,
         'filter': filter_tmp,
