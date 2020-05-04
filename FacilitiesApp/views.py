@@ -61,14 +61,16 @@ def home(request):
 
 
 def apartment(request):
-    db_data = Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
-    paginator = Paginator(db_data, 3)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    dic_x = {
-       # 'posts': Apartment.objects.all()#.values('title')
-        'posts': page_obj
-    }
+    dic_x = {}
+    if request.user.is_authenticated:
+        db_data = Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
+        paginator = Paginator(db_data, 3)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        dic_x = {
+        # 'posts': Apartment.objects.all()#.values('title')
+            'posts': page_obj
+        }
     return render(request, "FacilitiesApp/apartment.html", dic_x)
 
 #class ApartmentDetailView(DetailView):
