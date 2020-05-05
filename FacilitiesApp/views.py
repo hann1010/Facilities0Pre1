@@ -47,8 +47,7 @@ def home(request):
         'posts': page_obj,
         'date_str': date_tmp,
         'members_of': members_of_tmp,
-        'filter': filter_tmp,
-        'test': repair_state_filter
+        'filter': filter_tmp
        # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
         }
 
