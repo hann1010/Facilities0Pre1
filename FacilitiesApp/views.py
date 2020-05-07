@@ -28,7 +28,6 @@ def home(request):
         if str(repair_state_filter) == str(None):
             repair_state_filter = 'New'
         if str(repair_year_filter) == str(None):
-            #repair_year_filter = datetime.datetime.now().strftime('%Y')
             db_data = Ticket.objects.filter(company_name = members_of_tmp)\
                 .filter(repair_state = repair_state_filter).order_by('-date_posted')
         else:
@@ -40,22 +39,12 @@ def home(request):
         page_obj = paginator.get_page(page_number)
         
         dic_x = {
-        #'posts': Ticket.objects.filter(company_name = members_of_tmp)
-        #    .filter(repair_state = repair_state_filter)
-        #    .filter(date_repair__year = repair_year_filter)
-        #    .order_by('-date_posted'),
         'posts': page_obj,
         'date_str': date_tmp,
         'members_of': members_of_tmp,
         'filter': filter_tmp
-       # 'posts': Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
         }
 
-
-#    date_tmp = request.user.profile.members_of
- 
-#    current_user = request.user
-#    disp_temp = date_tmp + " User: " + str(current_user)
     return render(request, "FacilitiesApp/index.html", dic_x)
 
 
@@ -67,13 +56,10 @@ def apartment(request):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         dic_x = {
-        # 'posts': Apartment.objects.all()#.values('title')
             'posts': page_obj
         }
     return render(request, "FacilitiesApp/apartment.html", dic_x)
 
-#class ApartmentDetailView(DetailView):
-#    model = Apartment
 
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):
