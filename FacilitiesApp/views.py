@@ -34,7 +34,7 @@ def home(request):
             db_data = Ticket.objects.filter(company_name = members_of_tmp)\
                 .filter(repair_state = repair_state_filter)\
                 .filter(date_repair__year = repair_year_filter).order_by('-date_posted')
-        paginator = Paginator(db_data, 3)
+        paginator = Paginator(db_data, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         
@@ -52,7 +52,7 @@ def apartment(request):
     dic_x = {}
     if request.user.is_authenticated:
         db_data = Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
-        paginator = Paginator(db_data, 3)
+        paginator = Paginator(db_data, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         dic_x = {
