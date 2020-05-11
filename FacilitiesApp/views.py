@@ -84,8 +84,8 @@ class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        db_list = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
-        info = 'Apartment '+ db_list['address']+ ' has been updated!'
+        db_data = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
+        info = 'Apartment '+ db_data['address']+ ' has been updated!'
         messages.add_message(self.request, messages.INFO, info)
         return super().form_valid(form)
 
@@ -129,8 +129,8 @@ class TicketUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        db_list = Ticket.objects.all().values().get(pk=self.kwargs.get('pk'))
-        info = 'Ticket for '+ db_list['address']+ ' has been updated!'
+        db_data = Ticket.objects.all().values().get(pk=self.kwargs.get('pk'))
+        info = 'Ticket for '+ db_data['address']+ ' has been updated!'
         messages.add_message(self.request, messages.INFO, info)
         return super().form_valid(form)
 
@@ -147,7 +147,7 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         super(TicketPreCreateView, self).get_initial()
-        db_list = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
+        db_data = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
         first_name = ''
         last_name = ''
         address = ''
@@ -155,13 +155,13 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
         email = ''
         house_company = ''
   
-        if db_list['company_name'] == self.request.user.profile.members_of:
-            first_name = db_list['first_name']
-            last_name = db_list['last_name']
-            address = db_list['address']
-            phone_no = db_list['phone_no']
-            email = db_list['email']
-            house_company = db_list['house_company']
+        if db_data['company_name'] == self.request.user.profile.members_of:
+            first_name = db_data['first_name']
+            last_name = db_data['last_name']
+            address = db_data['address']
+            phone_no = db_data['phone_no']
+            email = db_data['email']
+            house_company = db_data['house_company']
  
         
         user = self.request.user
