@@ -13,7 +13,7 @@ REPAIR_CHOICES = (
     ('New', 'New'),
     ('Received', 'Received'),
     ('Waiting sparts', 'Waiting sparts'),
-    ('Waiting contactor', 'Waiting contactor'),
+    ('Work in progress', 'Work in progress'),
     ('Repair done', 'Repair done')
     )
 

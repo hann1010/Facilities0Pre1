@@ -4,6 +4,7 @@ from .models import Apartment, Ticket
 from .forms import TicketForm
 from .forms import FilterForm
 from django.core.paginator import Paginator
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
 #    ListView,
@@ -72,6 +73,7 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.company_name = self.request.user.profile.members_of
         form.instance.username_first = self.request.user
+        messages.add_message(self.request, messages.INFO, 'Apartment has been saved!')
         return super().form_valid(form)
 
 
@@ -82,6 +84,9 @@ class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        db_list = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))
+        info = 'Apartment '+ db_list['address']+ ' has been updated!'
+        messages.add_message(self.request, messages.INFO, info)
         return super().form_valid(form)
 
     def test_func(self):
@@ -112,6 +117,7 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.company_name = self.request.user.profile.members_of
         form.instance.username_first = self.request.user
+        messages.add_message(self.request, messages.INFO, 'Ticket has been saved!')
         return super().form_valid(form)
 
 
@@ -123,6 +129,9 @@ class TicketUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        db_list = Ticket.objects.all().values().get(pk=self.kwargs.get('pk'))
+        info = 'Ticket for '+ db_list['address']+ ' has been updated!'
+        messages.add_message(self.request, messages.INFO, info)
         return super().form_valid(form)
 
     def test_func(self):
@@ -177,4 +186,5 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.company_name = self.request.user.profile.members_of
         form.instance.username_first = self.request.user
+        messages.add_message(self.request, messages.INFO, 'Ticket has been saved!')
         return super().form_valid(form)
