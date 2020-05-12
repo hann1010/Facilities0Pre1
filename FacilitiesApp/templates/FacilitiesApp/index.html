@@ -26,20 +26,23 @@
 				{% endif %}
 			
 			<h1>Facilities0Pre1</h1>
-            <p>Hi, this is testing.</p>
-			<p>DateTime: {{ date_str }}</p>
+		{% if user.is_authenticated %}
+			<p>This is test service and coded using the Django framework.<br>Hanna P</p>
+			<p>Date, Time: {{ date_str }}</p>
 			<p>User: {{ user }}</p>
 			<p>Member: {{ members_of }}</p>
 			
             
         
-		{% if user.is_authenticated %}
+		
 		
 		
 		<a class="btn btn-danger btn-sm mt-1 mb-1" href='{% url 'logout' %}'>Logout</a>
 		<a class="btn btn-success btn-sm mt-1 mb-1" href='{% url 'apartment' %}'>Apartments</a>
 		<a class="btn btn-success btn-sm mt-1 mb-1" href="{% url 'ticket-create' %}">New ticket</a>
 		{% else %}
+		<p>This is a simple job management service done for property maintenance 
+			and the coding work is done as an exercise work.</p>
 		<a class="btn btn-success btn-sm mt-1 mb-1" href='{% url 'login' %}'>Login</a>
 		{% endif %}
 		<br>
