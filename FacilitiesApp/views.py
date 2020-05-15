@@ -164,7 +164,6 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
             house_company = db_data['house_company']
  
         
-        user = self.request.user
         self.initial = {
             'first_name': first_name,
             'last_name':last_name, 
