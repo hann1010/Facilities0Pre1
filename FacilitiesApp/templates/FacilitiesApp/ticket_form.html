@@ -69,13 +69,15 @@
                             <li class="list-group-item">{{ object.author}}</li>
                         </ul>
                     </fieldset>
-        
+                
             
-            <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Submit</button>
-            <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home' %}">Cancel</a>
+                        <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Submit</button>
+                        <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home' %}">Cancel</a>
+                </form>
             </div>
             {% endblock content %}
+        </div>
     </div>
-</form>
+
 </body>
 </html>
