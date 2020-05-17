@@ -6,6 +6,7 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     members_of = models.CharField(max_length=200, blank=True)
+    user_level= models.IntegerField(blank=True)
     
 
 @receiver(post_save, sender=User)
