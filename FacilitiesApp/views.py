@@ -110,7 +110,17 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
     success_url = '/'
-    template_name = 'FacilitiesApp/ticket_form_new.html'
+    
+    def get_template_names(self):
+        if  self.request.user.profile.user_level > 1:
+            template_name = 'FacilitiesApp/ticket_form_new.html'
+        else:
+            template_name = 'FacilitiesApp/forbidden.html'
+        return template_name
+        
+    
+
+    #template_name = 'FacilitiesApp/ticket_form_new.html'
 #    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
