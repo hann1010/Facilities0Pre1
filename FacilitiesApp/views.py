@@ -66,7 +66,15 @@ def apartment(request):
 class ApartmentCreateView(LoginRequiredMixin, CreateView):
     model = Apartment
     success_url = '/apartment'
-    template_name = 'FacilitiesApp/apartment_form_new.html'
+
+
+    def get_template_names(self):
+        if  self.request.user.profile.user_level > 1:
+            template_name = 'FacilitiesApp/apartment_form_new.html'
+        else:
+            template_name = 'FacilitiesApp/forbidden.html'
+        return template_name
+
     fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
@@ -110,18 +118,13 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
     success_url = '/'
-    
+
     def get_template_names(self):
         if  self.request.user.profile.user_level > 1:
             template_name = 'FacilitiesApp/ticket_form_new.html'
         else:
             template_name = 'FacilitiesApp/forbidden.html'
         return template_name
-        
-    
-
-    #template_name = 'FacilitiesApp/ticket_form_new.html'
-#    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
