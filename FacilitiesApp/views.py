@@ -90,6 +90,13 @@ class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = '/apartment'
     fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
+    def get_template_names(self):
+        if  self.request.user.profile.user_level > 1:
+            template_name = 'FacilitiesApp/apartment_form.html'
+        else:
+            template_name = 'FacilitiesApp/forbidden.html'
+        return template_name
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         db_data = Apartment.objects.all().values().get(pk=self.kwargs.get('pk'))

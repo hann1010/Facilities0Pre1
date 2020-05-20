@@ -31,13 +31,17 @@ class FilterForm(forms.Form):
     filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
     repair_year = forms.ChoiceField(choices = REPAIR_Y_CHOICES)
 
+class DatePicker(forms.DateInput):
+    input_type = 'date'
+    
+
 
 class TicketForm(ModelForm):
     class Meta:
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'date_repair': forms.SelectDateWidget(years = YEAR_CHOICES),
+            'date_repair': DatePicker(),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),
                       
         }
