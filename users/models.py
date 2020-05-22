@@ -9,7 +9,7 @@ class Profile(models.Model):
     user_level= models.IntegerField(default=1)
     
     def __str__(self):
-        return " / " + str(self.user) + " / " + str(self.user_level) + " / " + self.members_of
+        return  str(self.user) + " / " + str(self.user_level) + " / " + self.members_of
 
 
 @receiver(post_save, sender=User)
