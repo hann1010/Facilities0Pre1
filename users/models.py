@@ -8,6 +8,9 @@ class Profile(models.Model):
     members_of = models.CharField(max_length=200, blank=True)
     user_level= models.IntegerField(default=1)
     
+    def __str__(self):
+        return " / " + str(self.user) + " / " + str(self.user_level) + " / " + self.members_of
+
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
