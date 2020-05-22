@@ -69,7 +69,7 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
 
 
     def get_template_names(self):
-        if  self.request.user.profile.user_level > 1:
+        if  self.request.user.profile.user_level > 2:
             template_name = 'FacilitiesApp/apartment_form_new.html'
         else:
             template_name = 'FacilitiesApp/forbidden.html'
@@ -91,10 +91,10 @@ class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
     def get_template_names(self):
-        if  self.request.user.profile.user_level > 1:
+        if  self.request.user.profile.user_level > 2:
             template_name = 'FacilitiesApp/apartment_form.html'
         else:
-            template_name = 'FacilitiesApp/forbidden.html'
+            template_name = 'FacilitiesApp/apartment_list.html'
         return template_name
 
     def form_valid(self, form):
@@ -117,7 +117,7 @@ class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         Apartment = self.get_object()
-        if self.request.user == Apartment.author:
+        if self.request.user == Apartment.author and self.request.user.profile.user_level > 3:
             return True
         return False 
 
@@ -205,7 +205,14 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
     form_class = TicketForm
     success_url = '/'
-    template_name = 'FacilitiesApp/ticket_form_new.html'
+
+    def get_template_names(self):
+        if  self.request.user.profile.user_level > 1:
+            template_name = 'FacilitiesApp/ticket_form_new.html'
+        else:
+            template_name = 'FacilitiesApp/forbidden.html'
+        return template_name
+
 #    fields = ['first_name', 'last_name', 'address','repair_state','repair','date_repair', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
