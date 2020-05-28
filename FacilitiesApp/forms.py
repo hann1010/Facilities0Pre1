@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 import datetime
 from .models import Ticket
+from functools import partial
 
 
 date_year = int(datetime.datetime.now().strftime('%Y'))
@@ -31,9 +32,10 @@ class FilterForm(forms.Form):
     filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
     repair_year = forms.ChoiceField(choices = REPAIR_Y_CHOICES)
 
-class DatePicker(forms.DateInput):
-    input_type = 'date'
-    
+#class DatePicker(forms.DateInput):
+#    input_type = 'date'
+
+DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
 
 class TicketForm(ModelForm):
@@ -41,7 +43,7 @@ class TicketForm(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'date_repair': DatePicker(),
+            'date_repair': DateInput(),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),
                       
         }
