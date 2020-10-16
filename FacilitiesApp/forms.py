@@ -38,10 +38,20 @@ class FilterForm(forms.Form):
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
 
-class TicketForm(ModelForm):
+class TicketFormNew(ModelForm):
     class Meta:
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
+        widgets = {
+            'date_repair': DateInput(),
+            'repair_state': forms.Select(choices = REPAIR_CHOICES),
+                      
+        }
+
+class TicketForm(ModelForm):
+    class Meta:
+        model = Ticket
+        fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair', 'repair_state', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
             'date_repair': DateInput(),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),

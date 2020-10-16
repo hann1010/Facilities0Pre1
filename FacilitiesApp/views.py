@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import datetime
 from .models import Apartment, Ticket
-from .forms import TicketForm
+from .forms import TicketForm, TicketFormNew
 from .forms import FilterForm
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -123,7 +123,7 @@ class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class TicketCreateView(LoginRequiredMixin, CreateView):
     model = Ticket
-    form_class = TicketForm
+    form_class = TicketFormNew
     success_url = '/'
 
     def get_template_names(self):
@@ -204,7 +204,7 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
         
 
     model = Ticket
-    form_class = TicketForm
+    form_class = TicketFormNew
     success_url = '/'
 
     def get_template_names(self):
