@@ -41,7 +41,7 @@ DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 class TicketForm(ModelForm):
     class Meta:
         model = Ticket
-        fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair_state','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
+        fields = ['first_name', 'last_name', 'address', 'title', 'fault','repair', 'date_repair', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
             'date_repair': DateInput(),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),

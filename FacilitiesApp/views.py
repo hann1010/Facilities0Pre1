@@ -137,6 +137,7 @@ class TicketCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.company_name = self.request.user.profile.members_of
         form.instance.username_first = self.request.user
+        form.instance.repair_state = 'New'
         messages.add_message(self.request, messages.INFO, 'Ticket has been saved!')
         return super().form_valid(form)
 
@@ -219,5 +220,6 @@ class TicketPreCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.company_name = self.request.user.profile.members_of
         form.instance.username_first = self.request.user
+        form.instance.repair_state = 'New'
         messages.add_message(self.request, messages.INFO, 'Ticket has been saved!')
         return super().form_valid(form)
