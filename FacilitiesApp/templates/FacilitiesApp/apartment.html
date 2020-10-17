@@ -37,7 +37,6 @@
 				<th>Last name</th>
 				<th>Author</th>
 				<th>Date</th>
-				<th>Update</th>
 				<th>Delete</th>
 				<th>New ticket</th>
 			  </tr>
@@ -48,11 +47,10 @@
         
 				<tbody>
 					<tr>
-					  <td>{{ Apartment.address }}</td>
+					  <td><a href="{% url 'apartment-update' Apartment.id %}">{{ Apartment.address }}</a></td>
 					  <td>{{ Apartment.last_name }}</td>
 					  <td>{{ Apartment.author }}</td>
 					  <td>{{ Apartment.date_last_save|date:"H:i d F, Y" }}</td>
-					  <td><a href="{% url 'apartment-update' Apartment.id %}">Update</a></td>
 					  <td><a href="{% url 'apartment-delete' Apartment.id %}">Delete</a></td>
 					  <td><a href="{% url 'pre-ticket-create' Apartment.id %}">New ticket</a></td>
 					</tr>
