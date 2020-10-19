@@ -8,7 +8,7 @@ from functools import partial
 date_year = int(datetime.datetime.now().strftime('%Y'))
 
 
-YEAR_CHOICES = [date_year-1, date_year, date_year+1]
+#YEAR_CHOICES = [date_year-1, date_year, date_year+1]
 
 REPAIR_CHOICES = (
     ('New', 'New'),
@@ -43,7 +43,6 @@ class TicketFormNew(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'date_repair': DateInput(),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),
                       
         }
