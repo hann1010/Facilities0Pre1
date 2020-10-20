@@ -58,12 +58,11 @@
 			<thead>
 			  <tr>
 				<th>Date posted</th>
-				<th>Last name</th>
-				<th>Address</th>
-				<th>Last author</th>
-				<th>Last save</th>
 				<th>Title</th>
-				<th>Update</th>
+				<th>Address</th>
+				<th>Last name</th>
+				<th>Last author</th>
+				<th>Last save / Update</th>
 			  </tr>
 			</thead>
 			{% block content %}
@@ -72,12 +71,11 @@
 					<tbody>
 						<tr>
 							<td>{{ Ticket.date_posted|date:"H:i d F, Y" }}</td>
-							<td>{{ Ticket.last_name }}</td>
-							<td>{{ Ticket.address }}</td>
-							<td>{{ Ticket.author }}</td>
-							<td>{{ Ticket.date_last_save|date:"H:i d F, Y" }}</td>
 							<td>{{ Ticket.title }}</td>
-							<td><a href="{% url 'ticket-update' Ticket.id %}">Update</a></td>
+							<td>{{ Ticket.address }}</td>
+							<td>{{ Ticket.last_name }}</td>
+							<td>{{ Ticket.author }}</td>
+							<td><a href="{% url 'ticket-update' Ticket.id %}">{{ Ticket.date_last_save|date:"H:i d F, Y" }}</a></td>
 						</tr>
 					</tbody>	
 					  
