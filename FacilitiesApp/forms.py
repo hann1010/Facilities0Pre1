@@ -43,7 +43,7 @@ class TicketFormNew(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'repair_state': forms.Select(choices = REPAIR_CHOICES),
+            
                       
         }
 
