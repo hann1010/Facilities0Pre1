@@ -30,7 +30,7 @@ REPAIR_Y_CHOICES = (
 
 class FilterForm(forms.Form):
     filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
-    repair_year = forms.ChoiceField(choices = REPAIR_Y_CHOICES)
+    posted_year = forms.ChoiceField(choices = REPAIR_Y_CHOICES)
 
 #class DatePicker(forms.DateInput):
 #    input_type = 'date'
