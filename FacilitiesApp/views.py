@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import datetime
 from .models import Apartment, Ticket
-from .forms import TicketForm, TicketFormNew
+from .forms import TicketForm, TicketFormNew, ApartmentForm
 from .forms import FilterForm
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -65,6 +65,7 @@ def apartment(request):
 
 class ApartmentCreateView(LoginRequiredMixin, CreateView):
     model = Apartment
+    form_class = ApartmentForm
     success_url = '/apartment'
 
 
@@ -75,7 +76,7 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
             template_name = 'FacilitiesApp/forbidden.html'
         return template_name
 
-    fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
+    #fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -87,8 +88,9 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
 
 class ApartmentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Apartment
+    form_class = ApartmentForm
     success_url = '/apartment'
-    fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
+    #fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
 
     def get_template_names(self):
         if  self.request.user.profile.user_level > 2:

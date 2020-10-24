@@ -1,8 +1,9 @@
 from django import forms
 from django.forms import ModelForm
 import datetime
-from .models import Ticket
+from .models import Ticket, Apartment
 from functools import partial
+from django.forms import ModelForm, Textarea
 
 
 date_year = int(datetime.datetime.now().strftime('%Y'))
@@ -36,6 +37,16 @@ class FilterForm(forms.Form):
 #    input_type = 'date'
 
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
+
+
+class ApartmentForm(ModelForm):
+    class Meta:
+        model = Apartment
+        fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
+        widgets = {
+            'notes': Textarea(attrs={'rows':10, 'cols':52}),
+                      
+        }
 
 
 class TicketFormNew(ModelForm):
