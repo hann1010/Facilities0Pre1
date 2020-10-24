@@ -44,7 +44,7 @@ class ApartmentForm(ModelForm):
         model = Apartment
         fields = ['first_name', 'last_name', 'address', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'notes': Textarea(attrs={'rows':10, 'cols':51}),
+            'notes': Textarea(attrs={'rows':10, 'cols':52}),
                       
         }
 
