@@ -54,7 +54,8 @@ class TicketFormNew(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            
+            'fault': Textarea(attrs={'rows':10, 'cols':38}),
+            'notes': Textarea(attrs={'rows':10, 'cols':40}),
                       
         }
 
