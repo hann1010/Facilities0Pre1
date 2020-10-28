@@ -99,8 +99,19 @@
                                 {{ form.date_repair }}
                             </div>
                         </div>
+                        <br><br>
+                        <ul class="list-group" style="width:69%">
+                            <li class="list-group-item list-group-item-info"><b> Creating date :</b></li>
+                            <li class="list-group-item">{{ object.date_posted|date:"H:i d F, Y" }}</li>
+                            <li class="list-group-item list-group-item-info"><b>Creating author:</b></li>
+                            <li class="list-group-item">{{ object.username_first}}</li>
+                            <li class="list-group-item list-group-item-info"><b>Last save date:</b></li>
+                            <li class="list-group-item">{{ object.date_last_save|date:"H:i d F, Y" }}</li>
+                            <li class="list-group-item list-group-item-info"><b>Last save author:</b></li>
+                            <li class="list-group-item">{{ object.author}}</li>
+                        </ul>
                     </fieldset>
-                    <br><br>
+                    
             
                     <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Submit</button>
                     <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home' %}">Cancel</a>
