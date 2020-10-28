@@ -19,7 +19,7 @@ REPAIR_CHOICES = (
     ('Repair done', 'Repair done')
     )
 
-REPAIR_Y_CHOICES = (
+POSTED_Y_CHOICES = (
     ('None', 'All'),
     (date_year, date_year),
     (date_year-1, date_year-1),
@@ -31,7 +31,7 @@ REPAIR_Y_CHOICES = (
 
 class FilterForm(forms.Form):
     filter_repair_state = forms.ChoiceField(choices = REPAIR_CHOICES)
-    posted_year = forms.ChoiceField(choices = REPAIR_Y_CHOICES)
+    posted_year = forms.ChoiceField(choices = POSTED_Y_CHOICES)
 
 #class DatePicker(forms.DateInput):
 #    input_type = 'date'
@@ -54,8 +54,8 @@ class TicketFormNew(ModelForm):
         model = Ticket
         fields = ['first_name', 'last_name', 'address', 'title', 'fault', 'phone_no', 'email', 'house_company', 'notes']
         widgets = {
-            'fault': Textarea(attrs={'rows':10, 'cols':38}),
-            'notes': Textarea(attrs={'rows':10, 'cols':40}),
+            'fault': Textarea(attrs={'rows':10, 'cols':84}),
+            'notes': Textarea(attrs={'rows':10, 'cols':84}),
                       
         }
 
@@ -66,7 +66,9 @@ class TicketForm(ModelForm):
         widgets = {
             'date_repair': DateInput(),
             'repair_state': forms.Select(choices = REPAIR_CHOICES),
-                      
+            'fault': Textarea(attrs={'rows':10, 'cols':84}),
+            'notes': Textarea(attrs={'rows':10, 'cols':84}),
+            'repair': Textarea(attrs={'rows':10, 'cols':84}),
         }
 
     
