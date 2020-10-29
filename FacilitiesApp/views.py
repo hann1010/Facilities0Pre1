@@ -23,6 +23,17 @@ def home(request):
     if request.user.is_authenticated:
         db_data = ''
         members_of_tmp = request.user.profile.members_of
+        user_level_int = request.user.profile.user_level
+        if user_level_int > 4:
+            user_level_tmp = 'Ticket edit and new | Aparment edit, new and delete'
+        elif user_level_int > 3:
+            user_level_tmp = 'Ticket edit and new | Aparment edit and new'
+        elif user_level_int > 2:
+            user_level_tmp = 'Ticket edit and new | Aparment edit only'
+        elif user_level_int > 1:
+            user_level_tmp = 'Ticket edit and New | Aparment read only'
+        else:
+            user_level_tmp = 'read only for all")'
         repair_state_filter = request.POST.get('filter_repair_state')
         posted_year_filter = request.POST.get('posted_year')
         filter_tmp = FilterForm(request.POST or None)
@@ -43,7 +54,8 @@ def home(request):
         'posts': page_obj,
         'date_str': date_tmp,
         'members_of': members_of_tmp,
-        'filter': filter_tmp
+        'filter': filter_tmp,
+        'user_rights' : user_level_tmp
         }
 
     return render(request, "FacilitiesApp/index.html", dic_x)
@@ -70,7 +82,7 @@ class ApartmentCreateView(LoginRequiredMixin, CreateView):
 
 
     def get_template_names(self):
-        if  self.request.user.profile.user_level > 2:
+        if  self.request.user.profile.user_level > 3:
             template_name = 'FacilitiesApp/apartment_form_new.html'
         else:
             template_name = 'FacilitiesApp/forbidden.html'
@@ -119,7 +131,7 @@ class ApartmentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         Apartment = self.get_object()
-        if self.request.user == Apartment.author and self.request.user.profile.user_level > 3:
+        if self.request.user == Apartment.author and self.request.user.profile.user_level > 4:
             return True
         return False 
 
