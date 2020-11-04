@@ -101,21 +101,40 @@
                             </div>
                         </div>
                         <br><br>
-                        <ul class="list-group" style="width:69%">
-                            <li class="list-group-item list-group-item-info"><b> Creating date :</b></li>
-                            <li class="list-group-item">{{ object.date_posted|date:"H:i d F, Y" }}</li>
-                            <li class="list-group-item list-group-item-info"><b>Creating author:</b></li>
-                            <li class="list-group-item">{{ object.username_first}}</li>
-                            <li class="list-group-item list-group-item-info"><b>Last save date:</b></li>
-                            <li class="list-group-item">{{ object.date_last_save|date:"H:i d F, Y" }}</li>
-                            <li class="list-group-item list-group-item-info"><b>Last save author:</b></li>
-                            <li class="list-group-item">{{ object.author}}</li>
-                        </ul>
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Database information</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group" style="width:100%">
+                                        <li class="list-group-item list-group-item-info"><b> Creating date :</b></li>
+                                        <li class="list-group-item">{{ object.date_posted|date:"H:i d F, Y" }}</li>
+                                        <li class="list-group-item list-group-item-info"><b>Creating author:</b></li>
+                                        <li class="list-group-item">{{ object.username_first}}</li>
+                                        <li class="list-group-item list-group-item-info"><b>Last save date:</b></li>
+                                        <li class="list-group-item">{{ object.date_last_save|date:"H:i d F, Y" }}</li>
+                                        <li class="list-group-item list-group-item-info"><b>Last save author:</b></li>
+                                        <li class="list-group-item">{{ object.author}}</li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </fieldset>
                     
             
                     <button class="btn btn-success btn-sm mt-1 mb-1" type="submit">Submit</button>
                     <a class="btn btn-primary btn-sm mt-1 mb-1" href="{% url 'home' %}">Cancel</a>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Information</button>
                 </form>
 
             </div>
