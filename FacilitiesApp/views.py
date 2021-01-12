@@ -24,6 +24,7 @@ def home(request):
         db_data = ''
         members_of_tmp = request.user.profile.members_of
         user_level_int = request.user.profile.user_level
+        list_rows_int = request.user.profile.list_rows
         if user_level_int > 4:
             user_level_tmp = 'Ticket edit and new | Aparment edit, new and delete'
         elif user_level_int > 3:
@@ -46,7 +47,7 @@ def home(request):
             db_data = Ticket.objects.filter(company_name = members_of_tmp)\
                 .filter(repair_state = repair_state_filter)\
                 .filter(date_posted__year = posted_year_filter).order_by('-date_posted')
-        paginator = Paginator(db_data, 20)
+        paginator = Paginator(db_data, list_rows_int)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         
