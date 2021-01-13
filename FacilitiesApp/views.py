@@ -65,8 +65,9 @@ def home(request):
 def apartment(request):
     dic_x = {}
     if request.user.is_authenticated:
+        list_rows_int = request.user.profile.list_rows
         db_data = Apartment.objects.filter(company_name = request.user.profile.members_of).order_by('address')
-        paginator = Paginator(db_data, 20)
+        paginator = Paginator(db_data, list_rows_int)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         dic_x = {
