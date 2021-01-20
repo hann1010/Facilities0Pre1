@@ -18,6 +18,6 @@ Information about user profiles:
 
     list_rows:
         numbers of rows in table list views, for admin, from version 1.23
-        numbers of rows in table list views, for prsonal profile settings, 
+        numbers of rows in table list views, for personal profile settings, 
         from version 1.24
 
