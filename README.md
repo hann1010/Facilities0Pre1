@@ -1,4 +1,4 @@
-# Facilities0Pre1.23
+# Facilities0Pre1.24
 
 This is a simple job management service done for property maintenance 
 and the coding work has been done as an example.
@@ -17,4 +17,7 @@ Information about user profiles:
         made by each other within the framework of their User Rights.
 
     list_rows:
-        numbers of rows in table list views, from version 1.23 
+        numbers of rows in table list views, for admin, from version 1.23
+        numbers of rows in table list views, for prsonal profile settings, 
+        from version 1.24
+
